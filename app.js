@@ -31,7 +31,7 @@ app.listen(3000, function(){
     console.log("Server started on port 3000");
 }); 
 
-//Port route
+//Port route to push new items array
 app.post("/", function(req, res){
     var newItem  = req.body.newItem;
     newItems.push(newItem);
