@@ -1,13 +1,12 @@
 
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
 
 const app = express();
 
-var newItems = ["Buy food", "Cook food", "Eat food"];
-var workItems = [];
+const newItems = ["Buy food", "Cook food", "Eat food"];
+const workItems = [];
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -17,7 +16,7 @@ app.use(express.static("public"));
 app.get("/", function(req, res){
    // res.send("Hello");
 
-    var day = getDate();
+    var day = date.getDate();
     
     res.render("list", {listTitle: day, newListItems: newItems});
 
@@ -29,7 +28,7 @@ app.listen(3000, function(){
 
 //Port route to push new items array
 app.post("/", function(req, res){
-    var newItem  = req.body.newItem;
+    const newItem  = req.body.newItem;
     if(req.body.list === "Work") {
         workItems.push(newItem);
         res.redirect("/work");
@@ -44,7 +43,7 @@ app.get("/work",function(req, res){
 });
 
 app.post("/", function(req, res){
-    let newItem = req.body.newItem;
+    const newItem = req.body.newItem;
     workItems.push(newItem);
     res.redirect("/work");
 });
